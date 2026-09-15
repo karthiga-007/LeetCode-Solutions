@@ -1,16 +1,18 @@
-// Last updated: 9/15/2026, 11:07:28 AM
-1bool isPowerOfTwo(int n) {
-2    if(n == 1){
-3        return true;
-4    }
-5
-6    else if(n ==0){
-7        return false;
-8    }
-9
-10    else if(n%2 != 0){
-11        return false;
-12    }
-13
-14    return isPowerOfTwo(n/2);
-15}
+// Last updated: 9/15/2026, 11:24:09 AM
+1int singleNumber(int* nums, int numsSize) {
+2    for(int i = 0; i < numsSize; i++) {
+3        int count = 0;
+4
+5        for(int j = 0; j < numsSize; j++) {
+6            if(nums[i] == nums[j]) {
+7                count++;
+8            }
+9        }
+10
+11        if(count == 1) {
+12            return nums[i];
+13        }
+14    }
+15
+16    return 0;
+17}
