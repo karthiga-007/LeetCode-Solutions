@@ -1,4 +1,4 @@
-// Last updated: 9/15/2026, 8:14:44 PM
+// Last updated: 9/15/2026, 8:18:22 PM
 1int mySqrt(int x) {
 2    if (x == 0)
 3        return 0;
