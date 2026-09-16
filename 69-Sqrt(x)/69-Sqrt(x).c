@@ -1,25 +1,13 @@
-// Last updated: 9/16/2026, 8:46:52 AM
-1int longestPalindrome(char* s) {
-2    int fr[256] = {0};
+// Last updated: 9/16/2026, 9:02:49 AM
+1int removeDuplicates(int* nums, int numsSize) {
+2    if (numsSize == 0) return 0;
 3
-4    for(int i = 0; i < strlen(s); i++)
-5        fr[s[i]]++;
-6
-7    int len = 0;
-8    int odd = 0;
-9
-10    for(int i = 0; i < 256; i++) {
-11        if(fr[i] % 2 == 0) {
-12            len += fr[i];
-13        }
-14        else {
-15            len += fr[i] - 1;
-16            odd = 1;
-17        }
-18    }
-19
-20    if(odd == 1)
-21        len++;
-22
-23    return len;
-24}
+4    int k = 1;
+5    for (int i = 0; i < numsSize - 1; i++) {
+6        if (nums[i] != nums[i + 1]) {
+7            nums[k] = nums[i + 1];
+8            k++;
+9        }
+10    }
+11    return k;
+12}
