@@ -1,4 +1,4 @@
-// Last updated: 9/16/2026, 9:02:49 AM
+// Last updated: 9/16/2026, 9:03:13 AM
 1int removeDuplicates(int* nums, int numsSize) {
 2    if (numsSize == 0) return 0;
 3
