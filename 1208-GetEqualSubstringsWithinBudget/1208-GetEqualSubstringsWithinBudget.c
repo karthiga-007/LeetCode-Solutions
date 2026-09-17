@@ -1,4 +1,4 @@
-// Last updated: 9/17/2026, 10:34:55 AM
+// Last updated: 9/17/2026, 10:36:55 AM
 1int numberOfSubstrings(char* s) {
 2    int j = 0;
 3    int count[3] = {0};
