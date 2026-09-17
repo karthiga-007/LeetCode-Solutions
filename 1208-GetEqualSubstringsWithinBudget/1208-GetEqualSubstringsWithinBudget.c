@@ -1,21 +1,18 @@
-// Last updated: 9/17/2026, 10:10:38 AM
-1int equalSubstring(char* s, char* t, int maxCost) {
-2    int maxlen = 0;
-3    int cost = 0;
-4    int j = 0;
+// Last updated: 9/17/2026, 10:34:55 AM
+1int numberOfSubstrings(char* s) {
+2    int j = 0;
+3    int count[3] = {0};
+4    int res = 0;
 5
-6    for (int i = 0; i < strlen(s); i++) {
-7        cost += abs(s[i] - t[i]);
+6    for (int i = 0; s[i] != '\0'; i++) {
+7        count[s[i] - 'a']++;
 8
-9        while (cost > maxCost) {
-10            cost -= abs(s[j] - t[j]);
-11            j++;
-12        }
-13
-14        if (i - j + 1 > maxlen) {
-15            maxlen = i - j + 1;
-16        }
-17    }
-18
-19    return maxlen;
-20}
+9        while (count[0] > 0 && count[1] > 0 && count[2] > 0) {
+10            res += strlen(s) - i;
+11            count[s[j] - 'a']--;
+12            j++;
+13        }
+14    }
+15
+16    return res;
+17}
