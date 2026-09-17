@@ -1,43 +1,44 @@
-// Last updated: 9/17/2026, 11:30:16 AM
-1int balancedString(char* s) {
-2    int fr[256] = {0};
+// Last updated: 9/17/2026, 1:32:26 PM
+1int longestSubstring(char* s, int k) {
+2    int res = 0;
 3
-4    for (int i = 0; i < strlen(s); i++) {
-5        fr[s[i]]++;
-6    }
-7
-8    int req = strlen(s) / 4;
-9
-10    int extraQ = fr['Q'] - req;
-11    int extraW = fr['W'] - req;
-12    int extraE = fr['E'] - req;
-13    int extraR = fr['R'] - req;
-14
-15    if (extraQ <= 0 && extraW <= 0 &&
-16        extraE <= 0 && extraR <= 0) {
-17        return 0;
-18    }
-19
-20    int j = 0;
-21    int minlen = strlen(s);
+4    for(int t = 1; t <= 26; t++) {
+5        int fr[256] = {0};
+6        int i = 0, j = 0;
+7        int unq = 0, atk = 0;
+8
+9        while(j < strlen(s)) {
+10
+11            if(fr[s[j]] == 0)
+12                unq++;
+13
+14            fr[s[j]]++;
+15
+16            if(fr[s[j]] == k)
+17                atk++;
+18
+19            while(unq > t) {
+20                if(fr[s[i]] == k)
+21                    atk--;
 22
-23    for (int i = 0; i < strlen(s); i++) {
+23                fr[s[i]]--;
 24
-25        fr[s[i]]--;
-26
-27        while (fr['Q'] <= req &&
-28               fr['W'] <= req &&
-29               fr['E'] <= req &&
-30               fr['R'] <= req) {
-31
-32            if (i - j + 1 < minlen) {
-33                minlen = i - j + 1;
-34            }
-35
-36            fr[s[j]]++;
-37            j++;
-38        }
-39    }
-40
-41    return minlen;
-42}
+25                if(fr[s[i]] == 0)
+26                    unq--;
+27
+28                i++;
+29            }
+30
+31            if(unq == t && atk == t) {
+32                int len = j - i + 1;
+33
+34                if(len > res)
+35                    res = len;
+36            }
+37
+38            j++;
+39        }
+40    }
+41
+42    return res;
+43}
