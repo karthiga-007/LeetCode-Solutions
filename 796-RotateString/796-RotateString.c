@@ -1,14 +1,9 @@
-// Last updated: 9/18/2026, 8:34:51 AM
-1bool rotateString(char* s, char* goal) {
-2    if(strlen(s) != strlen(goal))
-3    return false;
-4
-5    char temp[2000];
-6    strcpy(temp,s);
-7    strcat(temp,s);
-8
-9    if(strstr(temp,goal)!= NULL)
-10    return true;
-11
-12    return false;
-13}
+// Last updated: 9/18/2026, 9:18:24 AM
+1bool repeatedSubstringPattern(char* s) {
+2    int n=strlen(s);
+3    char check[2*n+1];
+4    strcpy(check,s);
+5    strcat(check,s);
+6    check[2*n-1]='\0';
+7    return strstr(check+1,s);
+8}
