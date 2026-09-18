@@ -1,23 +1,14 @@
-// Last updated: 9/9/2026, 9:16:02 AM
-bool rotateString(char* s, char* goal){
-    int len_s = strlen(s);
-    int len_goal = strlen(goal);
-
-    // If lengths differ, rotation is not possible
-    if (len_s != len_goal)
-        return false;
-
-    // Create a new string containing s + s
-    char* temp = (char*)malloc(2 * len_s + 1);
-    if (temp == NULL)
-        return false;
-
-    strcpy(temp, s);
-    strcat(temp, s);
-
-    // Check if goal is a substring of s + s
-    bool result = strstr(temp, goal) != NULL;
-
-    free(temp);
-    return result;
-}
+// Last updated: 9/18/2026, 8:34:51 AM
+1bool rotateString(char* s, char* goal) {
+2    if(strlen(s) != strlen(goal))
+3    return false;
+4
+5    char temp[2000];
+6    strcpy(temp,s);
+7    strcat(temp,s);
+8
+9    if(strstr(temp,goal)!= NULL)
+10    return true;
+11
+12    return false;
+13}
