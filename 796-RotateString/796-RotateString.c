@@ -1,9 +1,13 @@
-// Last updated: 9/18/2026, 9:18:24 AM
-1bool repeatedSubstringPattern(char* s) {
-2    int n=strlen(s);
-3    char check[2*n+1];
-4    strcpy(check,s);
-5    strcat(check,s);
-6    check[2*n-1]='\0';
-7    return strstr(check+1,s);
-8}
+// Last updated: 9/18/2026, 10:16:56 AM
+1int strStr(char* haystack, char* needle) {
+2    int n=strlen(haystack),m=strlen(needle);
+3    for(int i=0; i <=n-m;i++){
+4        int j=0;
+5        while(j<m&&haystack[i+j]==needle[j]){
+6            j++;
+7        }
+8        if(j==m)
+9        return i;
+10    }
+11     return -1;
+12}
