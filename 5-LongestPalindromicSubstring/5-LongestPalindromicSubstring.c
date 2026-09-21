@@ -1,41 +1,33 @@
-// Last updated: 9/21/2026, 9:04:51 AM
-1char* longestPalindrome(char* s) {
+// Last updated: 9/21/2026, 10:05:03 AM
+1int countSubstrings(char* s) {
 2    int n = strlen(s);
-3    if (n < 2)
-4        return s;
-5
-6    int st = 0;
-7    int maxlen = 1;
+3
+4    if (n < 2)
+5        return n;
+6
+7    int c = 0;
 8
 9    for (int i = 0; i < n; i++) {
 10
-11        // Odd length palindrome
-12        int l = i;
-13        int r = i;
-14
-15        while (l >= 0 && r < n && s[l] == s[r]) {
-16            if (r - l + 1 > maxlen) {
-17                st = l;
-18                maxlen = r - l + 1;
-19            }
-20            l--;
-21            r++;
-22        }
+11        // Odd length palindromes
+12        int lef = i, rgt = i;
+13
+14        while (lef >= 0 && rgt < n && s[lef] == s[rgt]) {
+15            c++;
+16            lef--;
+17            rgt++;
+18        }
+19
+20        // Even length palindromes
+21        lef = i;
+22        rgt = i + 1;
 23
-24        // Even length palindrome
-25        l = i;
-26        r = i + 1;
-27
-28        while (l >= 0 && r < n && s[l] == s[r]) {
-29            if (r - l + 1 > maxlen) {
-30                st = l;
-31                maxlen = r - l + 1;
-32            }
-33            l--;
-34            r++;
-35        }
-36    }
-37
-38    s[st + maxlen] = '\0';
-39    return s + st;
-40}
+24        while (lef >= 0 && rgt < n && s[lef] == s[rgt]) {
+25            c++;
+26            lef--;
+27            rgt++;
+28        }
+29    }
+30
+31    return c;
+32}
