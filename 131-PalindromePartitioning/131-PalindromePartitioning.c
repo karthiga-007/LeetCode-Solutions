@@ -1,52 +1,36 @@
-// Last updated: 9/21/2026, 12:01:31 PM
-1int minCut(char* s) {
+// Last updated: 9/21/2026, 1:52:39 PM
+1int longestPalindromeSubseq(char* s) {
 2    int n = strlen(s);
 3
-4    if (n <= 1)
+4    if (n == 0)
 5        return 0;
 6
-7    int *dp = malloc(n * sizeof(int));
+7    int *dp = (int*)calloc(n, sizeof(int));
 8
-9    for (int i = 0; i < n; i++)
-10        dp[i] = i;
-11
-12    for (int i = 0; i < n; i++) {
+9    for (int i = n - 1; i >= 0; i--) {
+10
+11        dp[i] = 1;
+12        int prev = 0;
 13
-14        int left = i;
-15        int right = i;
-16
-17        while (left >= 0 && right < n &&
-18               s[left] == s[right]) {
-19
-20            if (left == 0)
-21                dp[right] = 0;
-22            else if (dp[left - 1] + 1 < dp[right])
-23                dp[right] = dp[left - 1] + 1;
-24
-25            left--;
-26            right++;
+14        for (int j = i + 1; j < n; j++) {
+15
+16            int temp = dp[j];
+17
+18            if (s[i] == s[j]) {
+19                dp[j] = prev + 2;
+20            }
+21            else {
+22                if (dp[j - 1] > dp[j])
+23                    dp[j] = dp[j - 1];
+24            }
+25
+26            prev = temp;
 27        }
-28
-29        left = i;
-30        right = i + 1;
+28    }
+29
+30    int ans = dp[n - 1];
 31
-32        while (left >= 0 && right < n &&
-33               s[left] == s[right]) {
-34
-35            if (left == 0)
-36                dp[right] = 0;
-37            else if (dp[left - 1] + 1 < dp[right])
-38                dp[right] = dp[left - 1] + 1;
-39
-40            left--;
-41            right++;
-42        }
-43    }
-44
-45    int ans = dp[n - 1];
-46
-47    free(dp);
-48
-49    return ans;
-50}
-51
+32    free(dp);
+33
+34    return ans;
+35}
